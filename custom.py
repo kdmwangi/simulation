@@ -107,13 +107,34 @@ class Major:
 
             self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
             return self.line2,self.cars, self.name
+        if type == 'laneM1':
+            self.cars = 2
+            self.l = 2
+            self.name = type
+
+            self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
+            return self.line2,self.cars, self.name
+        if type == 'laneM2':
+            self.cars = 1
+            self.l = 1
+            self.name = type
+
+            self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
+            return self.line2,self.cars, self.name
+        if type == 'laneM3':
+            self.cars = 5
+            self.l = 5
+            self.name = type
+
+            self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
+            return self.line2,self.cars, self.name
 
 
 
 
 class Car:
-    def __init__(self, x=30, y=20, color=(255, 255, 0)):
-        self.car = pyglet.shapes.Rectangle(x=x, y=y, width=30, height=15, color=color, batch=batch)
+    def __init__(self, x=30, y=20,width=30,height=15, color=(255, 255, 0)):
+        self.car = pyglet.shapes.Rectangle(x=x, y=y, width=width, height=height, color=color, batch=batch)
 
 
 # draw broken lines
@@ -156,18 +177,20 @@ cnts_yellow6 = Major().road(x=245, y=520, x2=460, y2=520, color=(255, 255, 0),ty
 # print(cnts_yellow6[1])
 
 
-lin = pyglet.shapes.Line(x=(window.width / 2 - 120), y=90, x2=(window.width / 2 - 120), y2=240, width=4, batch=batch)
-lin2 = pyglet.shapes.Line(x=(window.width / 2 + 120), y=90, x2=(window.width / 2 + 120), y2=240, width=4, batch=batch)
+# lin = pyglet.shapes.Line(x=(window.width / 2 - 120), y=90, x2=(window.width / 2 - 120), y2=240, width=4, batch=batch)
+lin = Major().road(x=(window.width / 2 - 120),y=90, x2=(window.width / 2 - 120), y2=240, width=4, batch=batch,
+                   color=(255, 255, 255), type="laneM1")
+# lin2 = pyglet.shapes.Line(x=(window.width / 2 + 120), y=90, x2=(window.width / 2 + 120), y2=240, width=4, batch=batch)
 lin3 = pyglet.shapes.Line(x=(window.width / 2), y=90, x2=(window.width / 2), y2=200, width=4, batch=batch,
                           color=(255, 255, 255))
 lin4 = pyglet.shapes.Line(x=(window.width / 2 + 40), y=90, x2=(window.width / 2 + 40), y2=200, width=4, batch=batch,
                           color=(255, 255, 0))
 lin5 = pyglet.shapes.Line(x=(window.width / 2 + 80), y=90, x2=(window.width / 2 + 80), y2=220, width=4, batch=batch,
                           color=(255, 255, 0))
-lin6 = pyglet.shapes.Line(x=(window.width / 2 - 80), y=90, x2=(window.width / 2 - 80), y2=220, width=4, batch=batch,
-                          color=(255, 255, 0))
-lin7 = pyglet.shapes.Line(x=(window.width / 2 - 40), y=90, x2=(window.width / 2 - 40), y2=200, width=4, batch=batch,
-                          color=(255, 255, 0))
+lin6 = Major().road(x=(window.width / 2 - 80), y=90, x2=(window.width / 2 - 80), y2=220, width=4, batch=batch,
+                          color=(255, 255, 0),type='laneM2')
+lin7 = Major().road(x=(window.width / 2 - 40), y=90, x2=(window.width / 2 - 40), y2=200, width=4, batch=batch,
+                          color=(255, 255, 0), type="laneM3")
 
 uplin = pyglet.shapes.Line(x=(window.width / 2), y=600, x2=(window.width / 2), y2=1000, width=4, batch=batch,
                            color=(255, 255, 255))
@@ -212,6 +235,8 @@ var = {}
 
 def laneCars (number, lane):
     x = 30
+    y=30
+
     print(lane)
     for cr in range(number):
         # print(lane[2])
@@ -270,6 +295,29 @@ def laneCars (number, lane):
             # color = []
             var[name] = Car(x=x+800, y=370, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
             x += 40
+        # y = 30
+
+        elif lane[2] == 'laneM1':
+
+            name = f"{lane[2]}{cr}"
+            # Car().Car(x=30, y=410, color=(255, 0, 0)).car
+            # color = []
+            var[name] = Car(x=(window.width / 2 - 110), y=y+120,width=20,height=30, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
+            y += 40
+        elif lane[2] == 'laneM2':
+
+            name = f"{lane[2]}{cr}"
+            # Car().Car(x=30, y=410, color=(255, 0, 0)).car
+            # color = []
+            var[name] = Car(x=(window.width / 2 - 70), y=y+140,width=20,height=30, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
+            y += 40
+        elif lane[2] == 'laneM3':
+
+            name = f"{lane[2]}{cr}"
+            # Car().Car(x=30, y=410, color=(255, 0, 0)).car
+            # color = []
+            var[name] = Car(x=(window.width / 2 - 30), y=y-20,width=20,height=30, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
+            y += 40
 
         # print(name)
     # for name in var:
@@ -288,6 +336,12 @@ laneCars(int(cnts_yellow4[1]),cnts_yellow4)
 laneCars(int(cnts_yellow11[1]),cnts_yellow11)
 laneCars(int(cnts_yellow8[1]),cnts_yellow8)
 laneCars(int(sepMjrd2[1]),sepMjrd2)
+laneCars(int(lin[1]),lin)
+laneCars(int(lin6[1]),lin6)
+laneCars(int(lin7[1]),lin7)
+
+
+
 
 
 
