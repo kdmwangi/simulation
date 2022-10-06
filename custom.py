@@ -128,6 +128,27 @@ class Major:
 
             self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
             return self.line2,self.cars, self.name
+        if type == 'laneMU1':
+            self.cars = 2
+            self.l = 2
+            self.name = type
+
+            self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
+            return self.line2,self.cars, self.name
+        if type == 'laneMU2':
+            self.cars = 1
+            self.l = 1
+            self.name = type
+
+            self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
+            return self.line2,self.cars, self.name
+        if type == 'laneMU3':
+            self.cars = 5
+            self.l = 5
+            self.name = type
+
+            self.line2 = pyglet.shapes.Line(x=x, y=y, x2=x2, y2=y2, width=4, batch=batch, color=color)
+            return self.line2,self.cars, self.name
 
 
 
@@ -180,7 +201,7 @@ cnts_yellow6 = Major().road(x=245, y=520, x2=460, y2=520, color=(255, 255, 0),ty
 # lin = pyglet.shapes.Line(x=(window.width / 2 - 120), y=90, x2=(window.width / 2 - 120), y2=240, width=4, batch=batch)
 lin = Major().road(x=(window.width / 2 - 120),y=90, x2=(window.width / 2 - 120), y2=240, width=4, batch=batch,
                    color=(255, 255, 255), type="laneM1")
-# lin2 = pyglet.shapes.Line(x=(window.width / 2 + 120), y=90, x2=(window.width / 2 + 120), y2=240, width=4, batch=batch)
+lin2 = pyglet.shapes.Line(x=(window.width / 2 + 120), y=90, x2=(window.width / 2 + 120), y2=240, width=4, batch=batch)
 lin3 = pyglet.shapes.Line(x=(window.width / 2), y=90, x2=(window.width / 2), y2=200, width=4, batch=batch,
                           color=(255, 255, 255))
 lin4 = pyglet.shapes.Line(x=(window.width / 2 + 40), y=90, x2=(window.width / 2 + 40), y2=200, width=4, batch=batch,
@@ -192,23 +213,26 @@ lin6 = Major().road(x=(window.width / 2 - 80), y=90, x2=(window.width / 2 - 80),
 lin7 = Major().road(x=(window.width / 2 - 40), y=90, x2=(window.width / 2 - 40), y2=200, width=4, batch=batch,
                           color=(255, 255, 0), type="laneM3")
 
-uplin = pyglet.shapes.Line(x=(window.width / 2), y=600, x2=(window.width / 2), y2=1000, width=4, batch=batch,
-                           color=(255, 255, 255))
+# uplin = pyglet.shapes.Line(x=(window.width / 2), y=600, x2=(window.width / 2), y2=1000, width=4, batch=batch,
+#                            color=(255, 255, 255))
+uplin = Major().road(x=740, y=560, x2=740, y2=800, batch=batch, width=4, type="laneMU1")
+uplin2 = Major().road(x=(window.width / 2 + 80), y=580, x2=(window.width / 2 + 80), y2=1000, width=4, batch=batch,
+                            color=(255, 255, 0), type="laneMU2")
+uplin3 = Major().road(x=(window.width / 2 + 40), y=600, x2=(window.width / 2 + 40), y2=1000, width=4, batch=batch,
+                            color=(255, 255, 0),type="laneMU3")
+
 uplin1 = pyglet.shapes.Line(x=(window.width / 2), y=600, x2=(window.width / 2), y2=1000, width=4, batch=batch,
                             color=(255, 255, 255))
-uplin2 = pyglet.shapes.Line(x=(window.width / 2 + 40), y=600, x2=(window.width / 2 + 40), y2=1000, width=4, batch=batch,
+
+
+uplin4 = pyglet.shapes.Line(x=(window.width / 2 - 80), y=580, x2=(window.width / 2 - 80), y2=1000, width=4, batch=batch,
                             color=(255, 255, 0))
-uplin4 = pyglet.shapes.Line(x=(window.width / 2 + 80), y=580, x2=(window.width / 2 + 80), y2=1000, width=4, batch=batch,
-                            color=(255, 255, 0))
-uplin5 = pyglet.shapes.Line(x=(window.width / 2 - 80), y=580, x2=(window.width / 2 - 80), y2=1000, width=4, batch=batch,
-                            color=(255, 255, 0))
-uplin6 = pyglet.shapes.Line(x=(window.width / 2 - 40), y=600, x2=(window.width / 2 - 40), y2=1000, width=4, batch=batch,
+uplin5 = pyglet.shapes.Line(x=(window.width / 2 - 40), y=600, x2=(window.width / 2 - 40), y2=1000, width=4, batch=batch,
                             color=(255, 255, 0))
 
 greenfields = pyglet.shapes.Rectangle(x=30, y=105, width=400, height=120, color=(0, 255, 0), batch=batch)
 
 lyn = pyglet.shapes.Line(x=500, y=560, x2=500, y2=800, batch=batch, width=4)
-lyn2 = pyglet.shapes.Line(x=740, y=560, x2=740, y2=800, batch=batch, width=4)
 
 lyn3 = pyglet.shapes.Line(x=740, y=560, x2=900, y2=560, batch=batch, width=4)
 lyn4 = pyglet.shapes.Line(x=740, y=240, x2=900, y2=240, batch=batch, width=4)
@@ -318,6 +342,27 @@ def laneCars (number, lane):
             # color = []
             var[name] = Car(x=(window.width / 2 - 30), y=y-20,width=20,height=30, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
             y += 40
+        elif lane[2] == 'laneMU1':
+
+            name = f"{lane[2]}{cr}"
+            # Car().Car(x=30, y=410, color=(255, 0, 0)).car
+            # color = []
+            var[name] = Car(x=(window.width / 2 + 90), y=y+560,width=20,height=30, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
+            y += 40
+        elif lane[2] == 'laneMU2':
+
+            name = f"{lane[2]}{cr}"
+            # Car().Car(x=30, y=410, color=(255, 0, 0)).car
+            # color = []
+            var[name] = Car(x=(window.width / 2 + 50), y=y+570,width=20,height=30, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
+            y += 40
+        elif lane[2] == 'laneMU3':
+
+            name = f"{lane[2]}{cr}"
+            # Car().Car(x=30, y=410, color=(255, 0, 0)).car
+            # color = []
+            var[name] = Car(x=(window.width / 2 + 10), y=y+570,width=20,height=30, color=(random.randrange(0,255), random.randrange(10,255), random.randrange(0,255))).car
+            y += 40
 
         # print(name)
     # for name in var:
@@ -339,6 +384,9 @@ laneCars(int(sepMjrd2[1]),sepMjrd2)
 laneCars(int(lin[1]),lin)
 laneCars(int(lin6[1]),lin6)
 laneCars(int(lin7[1]),lin7)
+laneCars(int(uplin[1]),uplin)
+laneCars(int(uplin2[1]),uplin2)
+laneCars(int(uplin3[1]),uplin3)
 
 
 
